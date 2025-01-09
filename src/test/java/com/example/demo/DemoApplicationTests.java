@@ -1,13 +1,15 @@
 package com.example.demo;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.modulith.core.ApplicationModules;
+import org.springframework.modulith.test.ApplicationModuleTest;
 
-@SpringBootTest
+@ApplicationModuleTest
 class DemoApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+	 @Test
+    void contextLoads() {
+        ApplicationModules.of(DemoApplication.class).verify();
+    }
 
 }
