@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.inventory.exposed.InventoryDto;
 import com.example.demo.inventory.exposed.InventoryService;
+import com.example.demo.order.dto.EmailDto;
 import com.example.demo.order.dto.InventoryRequestDto;
 import com.example.demo.order.dto.OrderDto;
+import com.example.demo.order.dto.OrderPaymentDto;
 import com.example.demo.order.dto.OrderResponseDto;
 import com.example.demo.order.type.Status;
 
@@ -27,6 +29,8 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
     private final OrderInventoryRepository orderInventoryRepository;
+    
+    private final OrderEventService orderEventService;
 
     public OrderResponseDto createOrder(OrderDto orderDto) {
 
@@ -46,11 +50,12 @@ public class OrderService {
         // build and persist the OrderInventory
         buildAndPersistOrderInventories(orderDto, inventories, order.getId(),amount);
 
-        /*OrderPaymentDto orderPaymentDto = new OrderPaymentDto(order.getOrderIdentifier(), amount.get());
+        OrderPaymentDto orderPaymentDto = new OrderPaymentDto(order.getOrderIdentifier(), amount.get());
+
         EmailDto emailDto = new EmailDto(orderDto.customerEmail(), orderDto.customerName(), order.getOrderIdentifier(),
                 orderPaymentDto.amount(), false);
 
-        orderEventService.completeOrder(orderPaymentDto, emailDto);*/
+        orderEventService.completeOrder(orderPaymentDto, emailDto);
 
         return new OrderResponseDto("Order Currently processed", 102);
     }

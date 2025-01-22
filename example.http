@@ -1,0 +1,13 @@
+POST http://localhost:8080/order HTTP/1.1
+Content-Type: application/json
+
+{
+    "customerName": "nelson",
+    "customerEmail": "nelson.digrazi@gmail.com",
+    "inventoryRequestDtoList":[
+        { 
+          "inventoryName": "pencil",
+          "qty": 10   
+        }
+    ] 
+}
