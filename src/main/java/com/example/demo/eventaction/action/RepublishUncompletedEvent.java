@@ -56,7 +56,7 @@ public class RepublishUncompletedEvent {
         actions.forEach(this::republish);
     }
 
-//    @Scheduled(fixedRate = 10L, timeUnit = TimeUnit.SECONDS)
+//@Scheduled(fixedRate = 10L, timeUnit = TimeUnit.SECONDS)
     public void republish() {
         log.info("Republishing uncompleted events");
         for(Action action: Action.values()){
